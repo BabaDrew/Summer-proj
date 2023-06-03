@@ -11,9 +11,10 @@ class Course:
         if course_code[-4] != ' ':
             self.name = course_code[:-3] + " " + course_code[-3:]
         self.current_grade: float = 0.0
-        self.grade_distribution = []
-        self.assessments_list = []
         self.assessments_dict = {}
+        
+        
+        
         # Unit for the course
         unit_check = False
         while not unit_check:
@@ -65,26 +66,26 @@ class Course:
             
 
     def modify_assessment_distribution(self):
-        
+        # find the already existed assessment and change its grades weight
         while True:
             name = input("Please enter the assessment name you want to edit its weight(0 to exit):")
             assessment_index = -1
             if name == '0':
                 break
-            elif name in self.assessments_list:
+            elif name in self.assessments_dict.keys:
                 print(name, "is selected.")
-                assessment_index = self.assessments_list.index(name)
+                assessment_index = self.assessments_dict.get(name)
             else:
                 print(name," is not in this course assessment list, please try again")
             
             valid_input = False
             while not valid_input:
                 try:
-                    new_weight = float(input("Enter weight for "+Assessment.name + ": "))
+                    new_weight = float(input("Enter weight for "+name + ": "))
                     if new_weight < 0:
                         print("Weight for an assessment cannot be negative!")
                     else:
-                        self.grade_distribution[assessment_index].moditfy_weight(new_weight)
+                        self.assessments_dict.get(name).update_weight(new_weight)
                         valid_input = True
                 except ValueError:
                     print("You did not enter a number!")
