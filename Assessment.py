@@ -1,5 +1,5 @@
 class Assessment:
-    def __init__(self,assessment_name,weight = 0.0,mark = 0.0):
+    def __init__(self,assessment_name,weight = "Undefined",mark = 0.0):
         self.name = assessment_name
         self.weight = weight
         self.mark = mark

@@ -1,7 +1,8 @@
-import Classes
+from Users import User
+
 
 def main():
-    me = Classes.User(input("Enter your name: "))
+    me = User(input("Enter your name: "))
     while True:
         print("\nMENU:")
         print("1. Add a new course")

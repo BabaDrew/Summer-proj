@@ -2,11 +2,12 @@ import csv
 from tabulate import tabulate
 import re # Enter 'pip install re' in your command line/terminal if you don't have this
 import Enums
-import Course_Class
+import Course
 
 pattern = Enums.pattern
 course_letters = Enums.course_letters
-Course = Course_Class.Course
+Course = Course.Course
+
 class User:
     def __init__(self, name):
         self.name = name
@@ -39,19 +40,18 @@ class User:
         course = Course(course_name)
         course.initiate_distribution()
 
-
         # Add the details of this course
         confirm_entry = False
         while confirm_entry is False:
             print("Please verify if the following assessments are input correctly:")
             print(course)
-            response = input("Is this accurate? Enter 'y'/'n': ")
+            response = input("Is this accurate? Enter 'y' or 'n': ")
             if response == 'y':
                 confirm_entry = True
             elif response == 'n':
-                course.remove_assessment()
+                course.edit_or_modify_assessment()
             else:
-                print("Invalid entry")
+                print("Invalid response. Please only enter 'y' or 'n'.")
 
         ''' not sure how this will work yet
         with open('course_data.csv', 'a', newline='') as file:
@@ -67,3 +67,4 @@ class User:
             unit = f'{c.unit:.2f}'
             courses += f'├──────────┼──────────────┤\n│ {c.name} │{unit.center(14)}│\n'
         print("╒══════════╤══════════════╕\n│  Course  │  Unit Values │\n"+courses+"╘══════════╧══════════════╛")
+
