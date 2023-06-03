@@ -15,7 +15,7 @@ def main():
         if choice == '1':
             me.add_course()
         elif choice == '2':
-            print("Currently Under Development")
+            me.edit_course()
         elif choice == '3':
             me.view_courses()
         elif choice == '4':

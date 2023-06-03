@@ -61,6 +61,45 @@ class User:
         print("Course added successfully!")
         self.courses.append(course)
 
+    def edit_course(self):
+        # check if course name is valid
+        valid_courses = []
+        for i in range(0, len(self.courses)):
+            valid_courses.append(self.courses[i].name)
+
+        loop = True
+        while loop:
+            for i in range(0, len(valid_courses)):
+                print(valid_courses[i])
+            course_to_edit = input("Enter a course to edit from the above: ").upper()
+            if course_to_edit[-4] != " ":
+                course_to_edit = course_to_edit[:-3] + " " + course_to_edit[-3:]
+    
+    # should prolly add a menu or something here idk (what the hell are we even doing)
+            if course_to_edit in valid_courses:
+                loop = False
+                
+                for i in range(0, len(valid_courses)):
+                    if course_to_edit == valid_courses[i]:
+                        index = i
+
+                msg = "Change units from " +  str(self.courses[i].unit) + " to: "
+
+                valid = False
+                while not valid:
+                    new_unit = input(msg)
+                    try:
+                        new_unit = float(new_unit)
+                        valid = True
+                    except:
+                        print("Invalid number of units entered")
+                
+                old_unit = self.courses[index].unit
+                self.courses[index].unit = new_unit
+                print("Successfully updated units for", valid_courses[index], "from", old_unit, "to", new_unit)
+            else:
+                print("Invalid course entered!")
+
     def view_courses(self):
         courses = ""
         for c in self.courses:

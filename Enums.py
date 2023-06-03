@@ -11,7 +11,7 @@ course_letters = ['AGHE', 'ANAT', 'ANIM', 'ANSH', 'APSC', 'ARAB', 'ARTC', 'ARTF'
                   'PPEC', 'PRAC', 'PROF', 'PSYC', 'QGSP', 'RELS', 'REPD', 'RHBS', 'RHL', 'SCCS', 'SOCY',
                   'SOFT', 'SPAN', 'STAM', 'STAT', 'SURP', 'TMED', 'WRIT']
 
-pattern = r"([A-Za-z]{3,4})\s?\d{3}"  # A-Z that occurs 3 to 4 times, with an optional space, and 3 digits
+pattern = r"([A-Za-z]{3,4})\s?(\d{3}$)"  # A-Z that occurs 3 to 4 times, with an optional space, and 3 digits
 
 menu = {'1': 'Attendance', '2': 'Participation', '3': 'Quizzes', '4': 'Assignments', '5': 'Term Tests',
         '6': 'Midterms', '7': 'Exam', '8': 'Final Project'}

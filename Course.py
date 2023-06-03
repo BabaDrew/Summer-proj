@@ -9,7 +9,7 @@ class Course:
     def __init__(self, course_code):
         self.name = course_code
         if course_code[-4] != ' ':
-            self.name = course_code[:-3] + " " + course_code[-3:]
+            self.name = course_code[:-3] + " " + course_code[-3:]   
         self.current_grade: float = 0.0
         self.assessments_dict = {}
 
