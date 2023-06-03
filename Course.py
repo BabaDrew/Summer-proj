@@ -66,7 +66,7 @@ class Course:
         # find the already existed assessment and change its grades weight
         while True:
             name = input("If you would like to exit, enter 0.\nIf you would like to add more assessments, enter '1'.\
-                         \nIf you would like to edit and assessment, enter the assessment name directly.")
+                         \nIf you would like to edit an assessment, enter the assessment name directly: ")
             if name == '0':
                 break
             elif name == '1':
