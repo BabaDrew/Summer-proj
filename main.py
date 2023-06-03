@@ -6,7 +6,7 @@ def main():
         print("\nMENU:")
         print("1. Add a new course")
         print("2. Edit the grade distribution for a course")
-        print("3. View all courses and their respective grades")
+        print("3. View all courses and their respective values")
         print("4. Exit")
 
         choice = input("Enter your choice (1-4): ")
