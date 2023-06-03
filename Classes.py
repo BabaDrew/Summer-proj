@@ -88,8 +88,8 @@ class Course:
             self.name = course_code[:-3] + " " + course_code[-3:]
         self.current_grade: float = 0.0
         self.grade_distribution = []
-        self.assessments = []
-
+        self.assessments_list = []
+        
         # Unit for the course
         unit_check = False
         while not unit_check:
@@ -102,6 +102,9 @@ class Course:
                     unit_check = True
             except ValueError:
                 print("You did not enter a number!")
+
+    
+
     def initiate_distribution(self):
         # Course Distribution
         print("Now please enter the assessments for this course\nQuick Menu (Please only enter the number itself):")
@@ -122,39 +125,65 @@ class Course:
         print("Course Assessment Titles Entry Complete.")
 
         print("Please enter the weight for the assessments entered: ")
-        for assessment in self.grade_distribution:
+        for Assessment in self.grade_distribution:
             valid_input = False
             while not valid_input:
                 try:
-                    weight = float(input("Enter weight for "+assessment.name + ": "))
+                    weight = float(input("Enter weight for "+Assessment.name + ": "))
                     if weight < 0:
                         print("Weight for an assessment cannot be negative!")
                     else:
-                        assessment.weight = weight
+                        Assessment.weight = weight
                         valid_input = True
                 except ValueError:
                     print("You did not enter a number!")
         print("Course Assessment Weighting Entry Complete.")
-        for assessment in self.grade_distribution:
-            self.assessments.append(assessment.name)
+        for Assessment in self.grade_distribution:
+           self.assessments_list.append(Assessment.name)     
+            
 
+    def modify_assessment_distribution(self):
+        
+        while True:
+            name = input("Please enter the assessment name you want to edit its weight(0 to exit):")
+            assessment_index = -1
+            if name == '0':
+                break
+            elif name in self.assessments_list:
+                print(name, "is selected.")
+                assessment_index = self.assessments_list.index(name)
+            else:
+                print(name," is not in this course assessment list, please try again")
+            
+            valid_input = False
+            while not valid_input:
+                try:
+                    new_weight = float(input("Enter weight for "+Assessment.name + ": "))
+                    if new_weight < 0:
+                        print("Weight for an assessment cannot be negative!")
+                    else:
+                        self.grade_distribution[assessment_index].moditfy_weight(new_weight)
+                        valid_input = True
+                except ValueError:
+                    print("You did not enter a number!")
+            print(name,"'s weight updates sucessfully!")
 
     def remove_assessment(self):
         while True:
             a = input("Enter the complete assessment name you would like to remove (0 to exit): ")
             if a == '0':
                 break
-            elif a in self.assessments:
+            elif a in self.assessments_list:
                 print(a, "is removed.")
                 self.grade_distribution.remove(Assessment(a))
-                self.assessments.remove(a)
+                self.assessments_list.remove(a)  
             else:
                 print("Invalid input")
 
     def print_assessments(self):
-        for num,assessment in enumerate(self.grade_distribution):
+        for num,assessment in enumerate(self.assessments_list):
             print(str(num + 1) + '. ' + assessment)
-
+           
     def __str__(self):
         assessments = ""
         for a in self.grade_distribution:
@@ -163,11 +192,15 @@ class Course:
                 + assessments + "╘═════════════════════════════════╛"
 
 class Assessment:
-    def __init__(self,assessment_name,weight = 0.0):
+    def __init__(self,assessment_name,weight = 0.0,mark = 0.0):
         self.name = assessment_name
         self.weight = weight
+        self.mark = mark
 
     def __eq__(self, obj):
         return isinstance(obj, Assessment) and obj.name == self.name
     def __str__(self):
         return self.name
+    
+    def modify_weight(self,weight):
+        self.weight = weight
