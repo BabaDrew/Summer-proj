@@ -1,6 +1,7 @@
 class Assessment:
     def __init__(self,assessment_name,freq=0, drops=0, each_weight=0, weight = "Undefined",mark = 0.0,):
         self.name = assessment_name
+        self.need_entry = True
         self.weight = weight
         self.mark = mark
         self.freq=freq
