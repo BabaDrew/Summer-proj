@@ -27,9 +27,10 @@ class Course:
                 print("You did not enter a number!")
 
     def add_assessment(self):
+        #Allows the user to add in assessment title for courses they have added
         print("Now please enter the assessments for this course\nQuick Menu (Please only enter the number itself):")
         print("0. Exit")
-        for num, key in enumerate(menu.keys()):
+        for num, key in enumerate(menu.keys()):                 #Shows menu from Enums with pre-determined titles for the user to use 
             print(str(num + 1) + '. ' + menu[key])
         print("Or enter any other assessment titles directly.")
         count = 0
@@ -49,12 +50,14 @@ class Course:
         print("Course Assessment Titles Entry Complete.")
 
     def assessment_parameters(self, assessment_obj: Assessment):
+        # Allows the user to enter in the net weightage, no. of times assessment is tested, weightage of each assessment
+        # and no. of dropped assessments for the assessments they have added
         valid_input = False
         while not valid_input:
             try:
                 weight = float(input("Enter Net weightage for " + assessment_obj.name + ": "))
                 freq = int(input("Enter number of times this assessment is tested: "))
-                if freq != 1:  # If 1 frequency no need to worry
+                if freq != 1:  # If 1 frequency no need to worry                #Also maybe add 'and freq>1' because we don't to get this when freq=0
                     each_weight = float(input("Enter weightage of each {0}: ".format(assessment_obj.name)))
                     drops = int(input("Enter number of assessments dropped: "))
                 else:
