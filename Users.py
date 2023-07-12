@@ -68,6 +68,9 @@ class User:
         for i in range(0, len(self.courses)):
             print(self.courses[i].name)
             valid_courses.append(self.courses[i].name)
+        if len(valid_courses) == 0:
+            print("You have no course registered yet!")
+            return None
 
         course = None
         loop = True
@@ -109,10 +112,14 @@ class User:
     def view_courses(self, all=True):
         if all:
             courses = ""
+
             for c in self.courses:
                 unit = f'{c.unit:.2f}'
                 courses += f'├──────────┼──────────────┤\n│ {c.name} │{unit.center(14)}│\n'
-            print("╒══════════╤══════════════╕\n│  Course  │  Unit Values │\n" + courses + "╘══════════╧══════════════╛")
+            courses += "╘══════════╧══════════════╛"
+            if len(self.courses) == 0:
+                courses = "├─────────────────────────┤\n│No course registered yet!│\n╘═════════════════════════╛"
+            print("╒══════════╤══════════════╕\n│  Course  │  Unit Values │\n" + courses)
         else:
             valid_courses = []
             for i in range(0, len(self.courses)):

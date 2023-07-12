@@ -1,8 +1,13 @@
 from Users import User
+# from flask import Flask
 
+# app = Flask(__name__)
 
+# @app.route("/")
 def main():
     me = User(input("Enter your name: "))
+    # return "<h1>Trying heading</h1>Regular text"
+
     while True:
         print("\nMENU:")
         print("0. Exit")
@@ -29,4 +34,5 @@ def main():
 
 
 if __name__ == "__main__":
+    # app.run()
     main()
