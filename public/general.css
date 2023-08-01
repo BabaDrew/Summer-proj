@@ -1,0 +1,29 @@
+Body {
+    background: rgb(63, 123, 179);
+}
+
+.welcomeback {
+    font-family: SansSerif;
+    font-size: 70px;
+    color: black;
+    font-weight: bold;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+}
+
+.clock {
+    font-size: 2em;
+
+    font-family: Monaco;
+    position: absolute;
+    top: 80%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+}
