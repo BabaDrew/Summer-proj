@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Undecided Name</title>
+    <meta name="description" content="Some sort of onQ">
+
+    <link rel="stylesheet" href="general.css">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Pacifico&display=swap" rel="stylesheet">
+
+</head>
+
+<body onload="$(document).ready(displayDateTime());" style="overflow: hidden;">
+    <div id="mySidebar" class="h-full w-0 fixed z-10 top-0 left-0 dark-blue overflow-hidden pt-6">
+        <div class="options flex flex-col justify-center items-center">
+            <a>Menu 1</a>
+            <a>Menu 2</a>
+            <a>Menu 3</a>
+            <a>Menu 4</a>
+            <a>Menu 5</a>
+        </div>
+    </div>
+
+    <div id="main">
+        <header class="flex justify-between items-center h-10">
+            <nav class="flex w-screen items-center justify-between">
+                <button onclick="openCloseNav();" class="hover:bg-blue-900">
+                    <img src="/images/sidebar.png" class="w-10">
+                </button>
+                <p class="Current Option"></p>
+                <a href="about.html" class="text-white pr-1 hover:text-blue-700">About Us</a>
+            </nav>
+        </header>
+
+        <div class="flex flex-col items-center min-h-screen">
+            <div class="font-pacifico h-32 text-white text-center font-medium mt-28 mb-28" style="font-size: 60px;">Welcome Back, _____</div>
+            <div class="clock font-orbitron text-center text-4xl pb-10 absolute bottom-0"></div>
+        </div>
+    </div>
+    <script src="/scripts/script.js"></script>
+</body>
+
+</html>
+
+<!--
+        
+    -->
