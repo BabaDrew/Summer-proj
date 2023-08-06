@@ -77,42 +77,44 @@ class User:
 
         while loop:
             course_to_edit = input("Enter a course to edit from the above: ").upper()
-            if course_to_edit[-4] != " ":
-                course_to_edit = course_to_edit[:-3] + " " + course_to_edit[-3:]
-            # course_to_edit is entered, check if in the current courses
-            if course_to_edit in valid_courses:
-                loop = False
-                # Changing unit amount
-                course = self.courses[valid_courses.index(course_to_edit)]
-                print(course)
-                msg = "Change units from " + str(course.unit) + " to: "
-
-                valid = False
-                while not valid:
-                    new_unit = input(msg)
-                    try:
-                        new_unit = float(new_unit)
-                        if not (new_unit == 0.0 or new_unit == 1.5 or new_unit == 3.0 or new_unit == 6.0):
-                            print("Invalid unit amounts entered")
-                        else:
-                            valid = True
-                    except ValueError:
-                        print("Invalid number of units entered")
-                old_unit = course.unit
-                course.unit = new_unit
-                print("Successfully updated units for", course.name, "from", old_unit, "to", new_unit)
-            else:
+            if len(course_to_edit) < 4:
                 print("Invalid course entered!")
+            else:
+                if course_to_edit[-4] != " ":
+                    course_to_edit = course_to_edit[:-3] + " " + course_to_edit[-3:]
+                # course_to_edit is entered, check if in the current courses
+                if course_to_edit in valid_courses:
+                    loop = False
+                    # Changing unit amount
+                    course = self.courses[valid_courses.index(course_to_edit)]
+                    print(course)
+                    msg = "Change units from " + str(course.unit) + " to: "
 
-            # Edit distribution
-            print("Now proceeding with the edit of course grade distribution.")
-            course.edit_or_modify_assessment()
+                    valid = False
+                    while not valid:
+                        new_unit = input(msg)
+                        try:
+                            new_unit = float(new_unit)
+                            if not (new_unit == 0.0 or new_unit == 1.5 or new_unit == 3.0 or new_unit == 6.0):
+                                print("Invalid unit amounts entered")
+                            else:
+                                valid = True
+                        except ValueError:
+                            print("Invalid number of units entered")
+                    old_unit = course.unit
+                    course.unit = new_unit
+                    print("Successfully updated units for", course.name, "from", old_unit, "to", new_unit)
+                else:
+                    print("Invalid course entered!")
+
+                # Edit distribution
+                print("Now proceeding with the edit of course grade distribution.")
+                course.edit_or_modify_assessment()
         print(course)
 
     def view_courses(self, all=True):
         if all:
             courses = ""
-
             for c in self.courses:
                 unit = f'{c.unit:.2f}'
                 courses += f'├──────────┼──────────────┤\n│ {c.name} │{unit.center(14)}│\n'
@@ -122,17 +124,25 @@ class User:
             print("╒══════════╤══════════════╕\n│  Course  │  Unit Values │\n" + courses)
         else:
             valid_courses = []
+            
+            if len(self.courses) == 0:
+                print("There are no courses currently to view.")
+                return
             for i in range(0, len(self.courses)):
                 print(self.courses[i].name)
                 valid_courses.append(self.courses[i].name)
+
             loop = True
             while loop:
-                course_to_view = input("Enter a course to edit from the above: ").upper()
-                if course_to_view[-4] != " ":
-                    course_to_view = course_to_view[:-3] + " " + course_to_view[-3:]
-                # course_to_edit is entered, check if in the current courses
-                if course_to_view in valid_courses:
-                    print(self.courses[valid_courses.index(course_to_view)])
-                    loop = False
-                else:
+                course_to_view = input("Enter a course to view from the above: ").upper()
+                if len(course_to_view) < 4:
                     print("Invalid course entered!")
+                else:
+                    if course_to_view[-4] != " ":
+                        course_to_view = course_to_view[:-3] + " " + course_to_view[-3:]
+                    # course_to_edit is entered, check if in the current courses
+                    if course_to_view in valid_courses:
+                        print(self.courses[valid_courses.index(course_to_view)])
+                        loop = False
+                    else:
+                        print("Invalid course entered!")

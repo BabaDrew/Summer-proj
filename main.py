@@ -1,12 +1,12 @@
 from Users import User
-# from flask import Flask
+# from flask import Flask, render_template
+# import json, os, signal
 
 # app = Flask(__name__)
 
 # @app.route("/")
 def main():
     me = User(input("Enter your name: "))
-    # return "<h1>Trying heading</h1>Regular text"
 
     while True:
         print("\nMENU:")
@@ -32,7 +32,13 @@ def main():
             print("Invalid choice. Please try again.")
     print("\nHave a nice day!")
 
+'''
+@app.route('/stopServer', methods=['GET'])
+def stopServer():
+    os.kill(os.getpid(), signal.SIGINT)
+    return jsonify({ "success": True, "message": "Server is shutting down..." })
+
+'''
 
 if __name__ == "__main__":
-    # app.run()
     main()

@@ -1,6 +1,5 @@
 let sidebaron = false;
 
-
 function displayDateTime() {
 
     const clock = document.querySelector('.clock');
@@ -55,6 +54,7 @@ function displayDateTime() {
         //printing html code inside div.clock
         clock.innerHTML = html;
     };
+    tick();
     //refreshing clock every 1 second
     setInterval(tick, 1000);
 }
@@ -70,4 +70,57 @@ function openCloseNav() {
         sidebaron = false;
     }
 
+}
+
+// TODO: FIX Different Menu Changes, add avariable indicating the page we ar on
+function changeMenu(x){
+    const frames = document.querySelectorAll('.frame');
+    frames.forEach(frame => {
+        frame.classList.add('hidden');
+    });
+    if (x === 0) {
+        displayDateTime();
+        document.querySelector(".current-frame").innerHTML = "";
+        document.querySelector(".current-frame").classList.add('hidden');
+    } else {
+        document.querySelector(".current-frame").innerHTML = "Menu " + x;
+        document.querySelector(".current-frame").classList.remove('hidden');
+    }
+
+    document.querySelector(`#menu${x}`).classList.remove('hidden');
+}
+
+
+function handleEnterKeydown(event) {
+    if (event.key === 'Enter') {
+        updateName();
+    }
+}
+
+function updateName() {
+    const inputElement = document.querySelector('.js-name-input');
+    let name = inputElement.value;
+    let nlen = name.length;
+    if (nlen > 35) {
+        alert(`Your name is too long!`);
+    } else if (nlen === 0) {
+        alert("You did not enter your name yet");
+    } else {
+        localStorage['username'] = name;
+        console.log(name);
+        document.querySelector('.changename').classList.toggle('hidden');
+        if (nlen > 15) {
+            document.querySelector('.welcomemessage').innerHTML = "Welcome Back<br>"+name+"!";
+        } else {
+            document.querySelector('.welcomemessage').innerHTML = "Welcome Back, " + name + "!";
+        }
+    }
+    document.querySelector('.name-section').classList.toggle('hidden');
+    inputElement.value = "";
+}
+
+function resetName() {
+    document.querySelector('.welcomemessage').innerHTML = "Welcome Back!";
+    document.querySelector('.name-section').classList.toggle('hidden');
+    document.querySelector('.changename').classList.toggle('hidden');
 }

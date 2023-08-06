@@ -6,19 +6,20 @@ body {
     background: rgb(8, 52, 157);
 }
   
-.options a {
-  padding: 8px 32px 8px 32px;
+.options button {
+  width: 130px;
+  padding: 8px;
   margin: 8px;
   font-size: 20px;
-  background-color: rgb(160,211,255); 
-  border-radius: 30px;
+  background-color: rgb(147,197,253); 
+  border-radius: 50px;
   color: black;
   display: block;
   transition: 0.3s;
   cursor: pointer;
 }
 
-.options a:hover {
+.options button:hover {
     color: #f1f1f1;
 }
 

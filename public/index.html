@@ -18,38 +18,97 @@
 
 </head>
 
+
 <body onload="$(document).ready(displayDateTime());" style="overflow: hidden;">
+
+    <!-- This first section contains our sidebar that will only be shown when clicked on ☰ -->
     <div id="mySidebar" class="h-full w-0 fixed z-10 top-0 left-0 dark-blue overflow-hidden pt-6">
         <div class="options flex flex-col justify-center items-center">
-            <a>Menu 1</a>
-            <a>Menu 2</a>
-            <a>Menu 3</a>
-            <a>Menu 4</a>
-            <a>Menu 5</a>
+            <button onclick="changeMenu(0)">Home</button>
+            <button onclick="changeMenu(1)">Menu 1</button>
+            <button onclick="changeMenu(2)">Menu 2</button>
+            <button onclick="changeMenu(3)">Menu 3</button>
+            <button onclick="changeMenu(4)">Menu 4</button>
         </div>
     </div>
 
+    <!-- The main ID contains everything on the page! (Absolutely everything)-->
     <div id="main">
+
+        <!--
+            This is the entire navigation bar at the top, with ☰ as the first element,
+            a centre element for the current menu option 
+            and an "about us" link in the end
+            If we were to add any other element in the navigation bar, might have to change justifiy-between
+        -->
         <header class="flex justify-between items-center h-10">
             <nav class="flex w-screen items-center justify-between">
                 <button onclick="openCloseNav();" class="hover:bg-blue-900">
                     <img src="/images/sidebar.png" class="w-10">
                 </button>
-                <p class="Current Option"></p>
-                <a href="about.html" class="text-white pr-1 hover:text-blue-700">About Us</a>
+                <p class="current-frame text-xl w-32 p-2 m-2 text-center bg-blue-300 rounded-3xl cursor-none hidden"></p>
+                <!-- Might change this into something similar to the change menu bar so I can easily go to other pages-->
+                <a href="about.html" class="text-white px-3 py-1 hover:bg-blue-900">About Us</a>
+                <!--
+                    
+  width: 130px;
+  padding: 8px;
+  margin: 8px;
+  font-size: 20px;
+  background-color: rgb(160,211,255); 
+  border-radius: 50px;
+  color: black;
+  display: block;
+  transition: 0.3s;
+  cursor: pointer;
+
+                -->
             </nav>
         </header>
 
-        <div class="flex flex-col items-center min-h-screen">
-            <div class="font-pacifico h-32 text-white text-center font-medium mt-28 mb-28" style="font-size: 60px;">Welcome Back, _____</div>
-            <div class="clock font-orbitron text-center text-4xl pb-10 absolute bottom-0"></div>
+        <!-- Here is how our different frames will be changed.
+            When an item is selected in the side bar above, it will only show the content at that frame
+        -->
+
+        <!-- Menu 0 or Home Page -->
+        <div class="flex flex-col items-center min-h-screen frame" id="menu0">
+
+            <!-- Welcome Message -->
+            <div class="welcomemessage font-pacifico h-32 text-white text-center font-medium mt-28 mb-28" style="font-size: 60px;">Welcome Back!</div>
+            
+            <!-- Enter Name Section -->
+            <div class="name-section flex items-center">
+                <input class="js-name-input p-2" type="text" placeholder="Enter Your Name:" onkeydown="handleEnterKeydown(event);">
+                <button class="ml-2 h-10 w-10 text-lg text-white bg-green-600 hover:bg-blue-800" onclick="updateName();">→</button>
+            </div>
+
+            <!-- Up to date Clock -->
+            <div class="clock font-orbitron text-center text-4xl pb-10 absolute bottom-1"></div>
+            <div class="changename hidden absolute bottom-0.5">
+                <button class="text-center text-white hover:bg-blue-600"
+                onclick="localStorage.removeItem('username'); resetName();">Change Your Name</button>
+            </div>
         </div>
+
+        <div class="frame" id="menu1">
+            Menu 1
+        </div>
+
+        <div class="frame" id="menu2">
+            Menu 2
+        </div>
+
+        <div class="frame" id="menu3">
+            Menu 3
+        </div>
+
+        <div class="frame" id="menu4">
+            Menu 4
+        </div>
+
+
     </div>
     <script src="/scripts/script.js"></script>
 </body>
 
 </html>
-
-<!--
-        
-    -->
