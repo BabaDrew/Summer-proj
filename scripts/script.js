@@ -1,5 +1,4 @@
 let sidebaron = false;
-
 function displayDateTime() {
 
     const clock = document.querySelector('.clock');
@@ -97,6 +96,21 @@ function handleEnterKeydown(event) {
     }
 }
 
+function checkNameExist() {
+    let name = localStorage.getItem('username')
+    if (name !== null) {
+        if (name.length > 15) {
+            document.querySelector('.welcomemessage').innerHTML = "Welcome Back<br>"+name+"!";
+        } else {
+            document.querySelector('.welcomemessage').innerHTML = "Welcome Back, " + name + "!";
+        }
+        document.querySelector('.name-section').classList.toggle('hidden');
+        document.querySelector('.changename').classList.toggle('hidden');
+    } 
+}
+
+checkNameExist();
+
 function updateName() {
     const inputElement = document.querySelector('.js-name-input');
     let name = inputElement.value;
@@ -114,9 +128,10 @@ function updateName() {
         } else {
             document.querySelector('.welcomemessage').innerHTML = "Welcome Back, " + name + "!";
         }
+        document.querySelector('.name-section').classList.toggle('hidden');
+        inputElement.value = "";
     }
-    document.querySelector('.name-section').classList.toggle('hidden');
-    inputElement.value = "";
+
 }
 
 function resetName() {
